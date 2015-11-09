@@ -9,6 +9,9 @@ private:
 	int *pMem;
 	int Size;
 	int Top;
+
+	int GetSize() const { return Size; }
+	int* GetpMem() const { return pMem; }
 public:
 	Stack();
 	Stack(int n);
@@ -23,8 +26,6 @@ public:
 	int Peek() const;						//посмотреть верхний элемент без удаления
 
 	void SetSize(int n);
-	int GetSize() const { return Size; }
-	int* GetpMem() const { return pMem; }
 	
 	Stack& operator=(const Stack &s);
 	bool operator==(const Stack &s) const;  

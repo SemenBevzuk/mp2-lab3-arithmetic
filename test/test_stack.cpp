@@ -22,7 +22,7 @@ TEST(Stack, can_not_add_element_in_full_stack) {
 	{
 		a.Push(i);
 	}
-	ASSERT_ANY_THROW(a.Push(b););
+	ASSERT_ANY_THROW(a.Push(b));
 }
 TEST(Stack, can_pick_element) {
 	Stack a(10);
@@ -56,13 +56,11 @@ TEST(Stack, copied_stack_are_equal) {
 TEST(Stack, copied_pMem_are_not_equal) {
 	Stack a(10);
 	Stack b(a);
-	EXPECT_NE(b.GetpMem(), a.GetpMem());
+	a.Push(1);
+	b.Push(2);
+	EXPECT_NE(b.Put(), a.Put());
 }
-TEST(Stack, can_SetSize) {
-	Stack a(10);
-	a.SetSize(15);
-	EXPECT_EQ(a.GetSize(), 15);
-}
+
 TEST(Stack, can_not_SetSize_negativ_length) {
 	Stack a(10);
 	a.SetSize(15);
@@ -70,27 +68,35 @@ TEST(Stack, can_not_SetSize_negativ_length) {
 }
 TEST(Stack, can_SetSize_then_Size_larger_n) {
 	Stack a(10);
-	for (int i = 0; i < a.GetSize(); i++)
+	for (int i = 0; i < 10; i++)
 	{
 		a.Push(i);
 	}
-	a.SetSize(5);
-	EXPECT_EQ(a.Peek(), 4);
-	EXPECT_EQ(a.GetSize(), 5);
+	ASSERT_ANY_THROW(a.SetSize(5));
 }
-TEST(Stack, can_assign_stacks) {
+TEST(Stack, can_SetSize) {
 	Stack a(10);
-	for (int i = 0; i < a.GetSize(); i++) {
+	for (int i = 0; i < 10; i++) {
 		a.Push(i);
 	}
-	Stack b(10);
-	ASSERT_NO_THROW(b = a);
+	a.SetSize(11);
+	ASSERT_NO_THROW(a.Push(1));
+}
+TEST(Stack, can_assign_stacks) {
+	Stack a(2);
+	for (int i = 0; i < 2; i++) {
+		a.Push(i);
+	}
+	Stack b(2);
+	b = a;
+	EXPECT_EQ(1, b.Put());
+	EXPECT_EQ(0, b.Put());
 }
 TEST(Stack, assign_stacks_are_equal) {
 	Stack a(10);
 	Stack b(10);
 
-	for (int i = 0; i < a.GetSize(); i++) {
+	for (int i = 0; i < 10; i++) {
 		a.Push(i);
 	}
 	
@@ -99,7 +105,7 @@ TEST(Stack, assign_stacks_are_equal) {
 }
 TEST(Stack, stack_equal_itself) {
 	Stack a(10);
-	for (int i = 0; i < a.GetSize(); i++) {
+	for (int i = 0; i < 10; i++) {
 		a.Push(i);
 	}
 	EXPECT_EQ(a, a);
@@ -112,9 +118,9 @@ TEST(Stack, stacks_whith_different_size_not_equal) {
 TEST(Stack, different_stacks_not_equal) {
 	Stack a(10);
 	Stack b(10);
-	for (int i = 0; i < a.GetSize(); i++) {
-		a.Push(i);
-	}
+
+	a.Push(1);
+
 	EXPECT_NE(a, b);
 }
 TEST(Stack, stacks_whith_different_Top_not_equal) {

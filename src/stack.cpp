@@ -87,38 +87,27 @@ void Stack::SetSize(int n)
 	if (n<0) {
 		throw invalid_argument("Размер стэка < 0");
 	}
-	if (n>Size)
+	if (n<Top+1)
 	{
-		int *p = new int[n];
-		for (int i = 0; i < Size; i++)
-		{
-			p[i] = pMem[i];
-		}
-		for (int i = Size; i < n; i++)
-		{
-			p[i] = 0;
-		}
-		Size = n;
-		delete []pMem;
-		pMem = new int[Size];
-		for (int i = 0; i < Size; i++)
-		{
-			pMem[i] = p[i];
-		}
+		throw invalid_argument("New Size < Top");
 	}
-	else
+
+	int *p = new int[Top+1];
+	for (int i = 0; i < Top+1; i++)
 	{
-		int *p = new int[n];
-		for (int i = 0; i < n; i++) {
-			p[i] = pMem[i];
-		}
-		Size = n;
-		Top = n-1;
-		delete[]pMem;
-		pMem = new int[Size];
-		for (int i = 0; i < Size; i++) {
-			pMem[i] = p[i];
-		}
+		p[i] = pMem[i];
+	}
+
+	Size = n;
+	delete []pMem;
+	pMem = new int[Size];
+	for (int i = 0; i < Top+1; i++)
+	{
+		pMem[i] = p[i];
+	}
+	for (int i = Top + 1; i < Size;i++)
+	{
+		pMem[i] = 0;
 	}
 }
 
