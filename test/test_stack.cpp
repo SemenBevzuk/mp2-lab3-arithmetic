@@ -12,8 +12,10 @@ TEST(Stack, can_not_create_stack_whith_negativ_length) {
 }
 TEST(Stack, can_add_element) {
 	Stack a(10);
-	int b=1;	
-	ASSERT_NO_THROW(a.Push(b););
+
+	int b=1;
+
+	ASSERT_NO_THROW(a.Push(b));
 }
 TEST(Stack, can_not_add_element_in_full_stack) {
 	Stack a(10);
