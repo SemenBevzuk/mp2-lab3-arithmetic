@@ -1,6 +1,7 @@
-#define MemSize 30
 #include <iostream>
 using namespace std;
+
+#define MemSize 30						 //стандартный размер
 
 class Stack
 {
@@ -14,15 +15,18 @@ public:
 	Stack(const Stack &s);
 	~Stack();
 	
+	bool IsFull();
+	bool IsEmpty();
+
+	int Put();								//взять и удалить верхний элемент
+	void Push(int element);					//добавить элемент
+	int Peek() const;						//посмотреть верхний элемент без удаления
+
 	void SetSize(int n);
 	int GetSize() const { return Size; }
 	int* GetpMem() const { return pMem; }
-	bool IsEmpty();
-	bool IsFull();
-	int Put();								//c удалением верхнего элемента
-	void Push(int element);					//добавить элемент
-	int Peek() const;								//посмотреть верхний элемент
+	
 	Stack& operator=(const Stack &s);
-	bool operator==(const Stack &s) const;  // сравнение
-	bool operator!=(const Stack &s) const;  // сравнение
+	bool operator==(const Stack &s) const;  
+	bool operator!=(const Stack &s) const;  
 };
