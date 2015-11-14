@@ -97,11 +97,6 @@
       <Project>{26f83c30-0e87-4474-8f0f-eab7cf3d97c4}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\stack\stack.vcxproj">
-      <Project>{a76282b3-4276-4945-9af2-3ac68111a828}</Project>
-      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
-      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\samples\main_arithmetic.cpp" />

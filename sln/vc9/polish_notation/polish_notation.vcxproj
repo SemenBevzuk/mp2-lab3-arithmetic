@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
+    <ProjectName>polish_notation</ProjectName>
     <ProjectGuid>{A76282B3-4276-4945-9AF2-3AC68111A828}</ProjectGuid>
     <RootNamespace>stack</RootNamespace>
     <Keyword>Win32Proj</Keyword>
@@ -75,9 +76,11 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\parser.cpp" />
     <ClCompile Include="..\..\..\src\stack.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\parser.h" />
     <ClInclude Include="..\..\..\include\stack.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
