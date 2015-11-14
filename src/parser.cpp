@@ -1,4 +1,4 @@
-#include "parser.h"
+﻿#include "parser.h"
 #include <string>
 
 //LEXEMA---
@@ -50,12 +50,34 @@ void Parser::AddDigit(string str, Lexema* res, int index, int *for_index)
 	}
 	res[index] = Lexema(Type_Lexems::digit, variable);
 }
-void Parser::AddOperationBinary(string var, Lexema* res, int index)
+void Parser::AddAddOperation(string var, Lexema* res, int index)
 {
 	string variable;
 	variable += var;
-	res[index] = Lexema(Type_Lexems::binary_operation, variable);
+	res[index] = Lexema(Type_Lexems::add, variable);
 }
+
+void Parser::AddMinusOperation(string var, Lexema* res, int index)
+{
+	string variable;
+	variable += var;
+	res[index] = Lexema(Type_Lexems::minus, variable);
+}
+
+void Parser::AddMultiplyOperation(string var, Lexema* res, int index)
+{
+	string variable;
+	variable += var;
+	res[index] = Lexema(Type_Lexems::multiply, variable);
+}
+
+void Parser::AddDivideOperation(string var, Lexema* res, int index)
+{
+	string variable;
+	variable += var;
+	res[index] = Lexema(Type_Lexems::divide, variable);
+}
+
 void Parser::AddOperationUnary(string var, Lexema* res, int index)
 {
 	string variable;
@@ -95,15 +117,30 @@ bool Parser::IsDigit(string str, int index)
 }
 bool Parser::IsOperationUnary(string str, int index)
 {
-	return (str[index] == '-') && (index == 0 || IsOpenBracket(str, index-1) || IsOperationBinary(str, index - 1));
+	return (str[index] == '-') && (index == 0 || IsOpenBracket(str, index-1) || IsBinaryOperaion(str, index - 1));
 }
-bool Parser::IsOperationBinary(string str, int index)
+bool Parser::IsBinaryOperaion(string str, int index)
 {
-	return (str[index] == '-' || str[index] == '+' || str[index] == '*' || str[index] == '/') &&
-		(index != 0) &&
+	return (index != 0) &&
 		(index < str.length() - 1) &&
 		(IsDigit(str, index - 1) || IsVariable(str, index - 1) || IsCloseBracket(str, index - 1)) &&
 		(IsDigit(str, index + 1) || IsVariable(str, index + 1) || IsOpenBracket(str, index + 1));
+}
+bool Parser::IsAddOperation(string str, int index)
+{
+	return (str[index] == '+') && IsBinaryOperaion(str, index);
+}
+bool Parser::IsMunisOperation(string str, int index)
+{
+	return (str[index] == '-') && IsBinaryOperaion(str, index);
+}
+bool Parser::IsMultiplyOperation(string str, int index)
+{
+	return (str[index] == '*') && IsBinaryOperaion(str, index);
+}
+bool Parser::IsDivideOperation(string str, int index)
+{
+	return (str[index] == '/') && IsBinaryOperaion(str, index);
 }
 bool Parser::IsOpenBracket(string str, int index)
 {
@@ -116,7 +153,11 @@ bool Parser::IsCloseBracket(string str, int index)
 
 
 Lexema* Parser::Parse(string input) {
-	Lexema* result = new Lexema[input.length()];
+	Lexema* result = new Lexema[input.length()+1];
+	for (int i = 0; i < input.length()+1; i++)
+	{
+		result[i] = Lexema(Type_Lexems::terminal, "");
+	}
 
 	int lexemaIndex = 0;
 
@@ -132,8 +173,23 @@ Lexema* Parser::Parse(string input) {
 			lexemaIndex++;
 			continue;
 		}
-		if (IsOperationBinary(input,i)) {
-			AddOperationBinary(input.substr(i, 1), result, lexemaIndex);
+		if (IsAddOperation(input,i)) {
+			AddAddOperation(input.substr(i, 1), result, lexemaIndex);
+			lexemaIndex++;
+			continue;
+		}
+		if (IsMunisOperation(input,i)) {
+			AddMinusOperation(input.substr(i, 1), result, lexemaIndex);
+			lexemaIndex++;
+			continue;
+		}
+		if (IsMultiplyOperation(input,i)) {
+			AddMultiplyOperation(input.substr(i, 1), result, lexemaIndex);
+			lexemaIndex++;
+			continue;
+		}
+		if (IsDivideOperation(input,i)) {
+			AddDivideOperation(input.substr(i, 1), result, lexemaIndex);
 			lexemaIndex++;
 			continue;
 		}

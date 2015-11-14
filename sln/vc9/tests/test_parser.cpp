@@ -22,8 +22,8 @@ TEST(Parser, can_pars_digit_whith_comma) {
 
 	EXPECT_EQ(result, p.Parse(input)[0]);
 }
-TEST(Parser, can_pars_binary_operation) {
-	Lexema result(binary_operation, "+");
+TEST(Parser, can_pars_add_operation) {
+	Lexema result(add, "+");
 	std::string input = "a+b";
 	Parser p;
 
@@ -51,7 +51,7 @@ TEST(Parser, can_pars_close_bracket) {
 	EXPECT_EQ(result, p.Parse(input)[3]);
 }
 TEST(Parser, can_pars) {
-	Lexema result(binary_operation, "-");
+	Lexema result(Type_Lexems::minus, "-");
 	std::string input = "(a+b*7)*3.5-22";
 	Parser p;
 	p.Parse(input);

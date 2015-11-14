@@ -106,6 +106,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\test\test_arithmetic.cpp" />
     <ClCompile Include="..\..\..\test\test_expression.cpp" />
+    <ClCompile Include="..\..\..\test\test_expression_builder.cpp" />
     <ClCompile Include="..\..\..\test\test_main.cpp" />
     <ClCompile Include="..\..\..\test\test_stack.cpp" />
     <ClCompile Include="test_parser.cpp" />

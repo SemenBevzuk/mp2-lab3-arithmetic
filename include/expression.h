@@ -1,4 +1,4 @@
-
+п»ї
 class Expression {
 public:
 	virtual ~Expression() {}
@@ -16,7 +16,7 @@ private:
 class Var : public Expression {
 public:
 	double Calculate() override { 
-	    //TODO: Нужна проверка IsSet, и ввод значения из консоли
+	    //TODO: РќСѓР¶РЅР° РїСЂРѕРІРµСЂРєР° IsSet, Рё РІРІРѕРґ Р·РЅР°С‡РµРЅРёСЏ РёР· РєРѕРЅСЃРѕР»Рё
 		return Value; 
 	};
 	Var() {}

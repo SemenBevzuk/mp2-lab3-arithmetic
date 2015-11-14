@@ -1,7 +1,7 @@
-#include <iostream>
+п»ї#include <iostream>
 using namespace std;
 
-#define MemSize 30						 //стандартный размер
+#define MemSize 30						 //СЃС‚Р°РЅРґР°СЂС‚РЅС‹Р№ СЂР°Р·РјРµСЂ
 
 template <class Type>
 class Stack
@@ -22,9 +22,9 @@ public:
 	bool IsFull();
 	bool IsEmpty();
 
-	Type Put();								//взять и удалить верхний элемент
-	void Push(int element);					//добавить элемент
-	Type Peek() const;						//посмотреть верхний элемент без удаления
+	Type Put();								//РІР·СЏС‚СЊ Рё СѓРґР°Р»РёС‚СЊ РІРµСЂС…РЅРёР№ СЌР»РµРјРµРЅС‚
+	void Push(int element);					//РґРѕР±Р°РІРёС‚СЊ СЌР»РµРјРµРЅС‚
+	Type Peek() const;						//РїРѕСЃРјРѕС‚СЂРµС‚СЊ РІРµСЂС…РЅРёР№ СЌР»РµРјРµРЅС‚ Р±РµР· СѓРґР°Р»РµРЅРёСЏ
 
 	void SetSize(int n);
 	
@@ -46,7 +46,7 @@ Stack<Type>::Stack() {
 template <class Type>
 Stack<Type>::Stack(int n) {
 	if (n<0) {
-		throw invalid_argument("Размер стэка < 0, конструктор");
+		throw invalid_argument("Р Р°Р·РјРµСЂ СЃС‚СЌРєР° < 0, РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ");
 	}
 	pMem = new Type[n];
 	Size = n;
@@ -91,7 +91,7 @@ bool Stack<Type>::IsFull() {
 template <class Type>
 void Stack<Type>::Push(int element) {
 	if (this->IsFull()) {
-		throw ("Стэк переполнен!");
+		throw ("РЎС‚СЌРє РїРµСЂРµРїРѕР»РЅРµРЅ!");
 	}
 	//Top++;
 	pMem[++Top] = element;
@@ -100,7 +100,7 @@ void Stack<Type>::Push(int element) {
 template <class Type>
 Type Stack<Type>::Put() {
 	if (this->IsEmpty()) {
-		throw ("Стэк пуст!");
+		throw ("РЎС‚СЌРє РїСѓСЃС‚!");
 	}
 	return pMem[Top--];
 }
@@ -108,7 +108,7 @@ Type Stack<Type>::Put() {
 template <class Type>
 Type Stack<Type>::Peek() const {
 	if (Top == -1) {
-		throw ("Стэк пуст!");
+		throw ("РЎС‚СЌРє РїСѓСЃС‚!");
 	}
 	return pMem[Top];
 }
@@ -116,7 +116,7 @@ Type Stack<Type>::Peek() const {
 template <class Type>
 void Stack<Type>::SetSize(int n) {
 	if (n<0) {
-		throw invalid_argument("Размер стэка < 0");
+		throw invalid_argument("Р Р°Р·РјРµСЂ СЃС‚СЌРєР° < 0");
 	}
 	if (n<Top + 1) {
 		throw invalid_argument("New Size < Top");

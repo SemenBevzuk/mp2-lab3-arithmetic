@@ -76,11 +76,13 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\expression_builder.cpp" />
     <ClCompile Include="..\..\..\src\parser.cpp" />
     <ClCompile Include="..\..\..\src\stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\expression.h" />
+    <ClInclude Include="..\..\..\include\expression_builder.h" />
     <ClInclude Include="..\..\..\include\parser.h" />
     <ClInclude Include="..\..\..\include\stack.h" />
   </ItemGroup>
