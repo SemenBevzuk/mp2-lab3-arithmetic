@@ -39,7 +39,7 @@ void Parser::AddDigit(string str, Lexema* res, int index, int *for_index)
 	string variable;
 	string point = ".";
 
-	while ((str.substr(*for_index, 1) == point) || (stod(str.substr(*for_index, 1)) >= 0 && stod(str.substr(*for_index, 1)) <= 9))
+	while (str.substr(*for_index, 1) == point || IsDigit(str, *for_index))
 	{
 		variable += str.substr(*for_index, 1);
 		(*for_index)++;
@@ -77,12 +77,11 @@ void Parser::AddCloseBracket(string var, Lexema* res, int index)
 bool Parser::IsVariable(string str, int index)
 {
 	try {
-		isalpha(str[index]);
+		return isalpha(str[index]);
 	}
 	catch (...) {
 		return false;
 	}
-	return isalpha(str[index]);
 }
 bool Parser::IsDigit(string str, int index)
 {
@@ -96,15 +95,15 @@ bool Parser::IsDigit(string str, int index)
 }
 bool Parser::IsOperationUnary(string str, int index)
 {
-	return (str[index] == '-') && (index == 0 || str[index - 1] == '(' || IsOperationBinary(str,index-1));
+	return (str[index] == '-') && (index == 0 || IsOpenBracket(str, index-1) || IsOperationBinary(str, index - 1));
 }
 bool Parser::IsOperationBinary(string str, int index)
 {
 	return (str[index] == '-' || str[index] == '+' || str[index] == '*' || str[index] == '/') &&
 		(index != 0) &&
 		(index < str.length() - 1) &&
-		(IsDigit(str, index - 1) || IsVariable(str, index - 1)) &&
-		(IsDigit(str, index + 1) || IsVariable(str, index + 1));
+		(IsDigit(str, index - 1) || IsVariable(str, index - 1) || IsCloseBracket(str, index - 1)) &&
+		(IsDigit(str, index + 1) || IsVariable(str, index + 1) || IsOpenBracket(str, index + 1));
 }
 bool Parser::IsOpenBracket(string str, int index)
 {
@@ -114,8 +113,6 @@ bool Parser::IsCloseBracket(string str, int index)
 {
 	return str[index] == ')';
 }
-
-
 
 
 Lexema* Parser::Parse(string input) {
@@ -155,12 +152,10 @@ Lexema* Parser::Parse(string input) {
 		{
 			int j = 0;
 			AddDigit(input.substr(i), result, lexemaIndex, &j);
-			i += j;
+			i += j-1;
 			lexemaIndex++;
 			continue;
 		}
-		
 	}
-
 	return result;
 }

@@ -15,6 +15,12 @@ public:
 	bool operator==(const Lexema &v) const;
 	Type_Lexems GetTypeLexems() const { return Type; }
 	string GetValue() const { return Value; }
+
+	friend ostream& operator<<(ostream &out, const Lexema &l) {
+		out << l.Type << endl;
+		out << l.Value.c_str() << endl;
+		return out;
+	}
 };
 
 class Parser
@@ -35,4 +41,5 @@ private:
 	bool IsCloseBracket(string str, int index);
 public:
 	Lexema* Parse(string input);
+
 };

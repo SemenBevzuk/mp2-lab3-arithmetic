@@ -50,3 +50,10 @@ TEST(Parser, can_pars_close_bracket) {
 
 	EXPECT_EQ(result, p.Parse(input)[3]);
 }
+TEST(Parser, can_pars) {
+	Lexema result(binary_operation, "-");
+	std::string input = "(a+b*7)*3.5-22";
+	Parser p;
+	p.Parse(input);
+	EXPECT_EQ(result, p.Parse(input)[9]);
+}
