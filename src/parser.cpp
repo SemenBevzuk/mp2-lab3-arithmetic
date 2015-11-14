@@ -76,27 +76,43 @@ void Parser::AddCloseBracket(string var, Lexema* res, int index)
 }
 bool Parser::IsVariable(string str, int index)
 {
+	try {
+		isalpha(str[index]);
+	}
+	catch (...) {
+		return false;
+	}
 	return isalpha(str[index]);
 }
 bool Parser::IsDigit(string str, int index)
 {
-	return 0;
+	try {
+		stod(str.substr(index, 1));
+	}
+	catch (...) {
+		return false;
+	}
+	return stod(str.substr(index, 1)) >= 0 && stod(str.substr(index, 1)) <= 9;
 }
 bool Parser::IsOperationUnary(string str, int index)
 {
-	return 0;
+	return (str[index] == '-') && (index == 0 || str[index - 1] == '(' || IsOperationBinary(str,index-1));
 }
 bool Parser::IsOperationBinary(string str, int index)
 {
-	return 0;
+	return (str[index] == '-' || str[index] == '+' || str[index] == '*' || str[index] == '/') &&
+		(index != 0) &&
+		(index < str.length() - 1) &&
+		(IsDigit(str, index - 1) || IsVariable(str, index - 1)) &&
+		(IsDigit(str, index + 1) || IsVariable(str, index + 1));
 }
 bool Parser::IsOpenBracket(string str, int index)
 {
-	return 0;
+	return str[index] == '(';
 }
 bool Parser::IsCloseBracket(string str, int index)
 {
-	return 0;
+	return str[index] == ')';
 }
 
 
@@ -113,29 +129,29 @@ Lexema* Parser::Parse(string input) {
 			lexemaIndex++;
 			continue;
 		}
-		if ((input[i] == '-') && (i == 0 || input[i - 1] == '('))
+		if (IsOperationUnary(input,i))
 		{
 			AddOperationUnary(input.substr(i, 1), result, lexemaIndex);
 			lexemaIndex++;
 			continue;
 		}
-		if ((input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/') /*&& (result[lexemaIndex - 1].GetTypeLexems() != binary_operation)*/) {
+		if (IsOperationBinary(input,i)) {
 			AddOperationBinary(input.substr(i, 1), result, lexemaIndex);
 			lexemaIndex++;
 			continue;
 		}
-		if (input[i] == '(')
+		if (IsOpenBracket(input,i))
 		{
 			AddOpenBracket(input.substr(i, 1), result, lexemaIndex);
 			lexemaIndex++;
 			continue;
 		}
-		if (input[i] == ')') {
+		if (IsCloseBracket(input,i)) {
 			AddCloseBracket(input.substr(i, 1), result, lexemaIndex);
 			lexemaIndex++;
 			continue;
 		}
-		if (stod(input.substr(i, 1))>=0 && stod(input.substr(i, 1))<=9)
+		if (IsDigit(input,i))
 		{
 			int j = 0;
 			AddDigit(input.substr(i), result, lexemaIndex, &j);
