@@ -13,3 +13,21 @@ TEST(Expression_Builder, can_build_digit_plus) {
 	Expression* expression = builder.Build();
 	ASSERT_EQ(1+2, expression->Calculate());
 }
+
+TEST(Expression_Builder, can_build_digit_minus) {
+	ExpressionBuilder builder("1-2");
+	Expression* expression = builder.Build();
+	ASSERT_EQ(1 - 2, expression->Calculate());
+}
+
+TEST(Expression_Builder, can_build_digit_multiply) {
+	ExpressionBuilder builder("2*3");
+	Expression* expression = builder.Build();
+	ASSERT_EQ(2*3, expression->Calculate());
+}
+
+TEST(Expression_Builder, can_build_digit_divide) {
+	ExpressionBuilder builder("3/2");
+	Expression* expression = builder.Build();
+	ASSERT_EQ(3.0/2.0, expression->Calculate());
+}
