@@ -31,3 +31,9 @@ TEST(Expression_Builder, can_build_digit_divide) {
 	Expression* expression = builder.Build();
 	ASSERT_EQ(3.0/2.0, expression->Calculate());
 }
+
+TEST(Expression_Builder, can_build_expression_whith_bracket) {
+	ExpressionBuilder builder("(1+2)*3");
+	Expression* expression = builder.Build();
+	ASSERT_EQ( (1+2)*3, expression->Calculate());
+}

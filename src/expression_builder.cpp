@@ -17,6 +17,8 @@ Expression* ExpressionBuilder::build(Lexema* lexems, int* currentIndex)
 {
 	Expression* expression;
 	bool hasLexem = lexems[*currentIndex].GetType() != Type_Lexems::terminal;
+	int count_bracet = 0;
+
 	while (hasLexem)
 	{
 		Lexema lexema = lexems[*currentIndex];
@@ -34,6 +36,28 @@ Expression* ExpressionBuilder::build(Lexema* lexems, int* currentIndex)
 			(*currentIndex)++;
 			operation->SetRight(build(lexems, currentIndex));
 			expression = operation;
+		}
+
+		if (lexema.GetType() == Type_Lexems::open_bracet)
+		{
+			count_bracet = 1;
+			int j = 1;
+
+			while (count_bracet != 0)
+			{
+				if (lexems[*currentIndex + j].GetType() == Type_Lexems::open_bracet) {
+					count_bracet++;
+				}
+				if (lexems[*currentIndex + j].GetType() == Type_Lexems::close_bracket)
+				{
+					count_bracet--;
+				}
+				j++;
+			}
+			ExpressionBuilder exp_builder(&lexems[*currentIndex + 1], j-2);
+			Expression* exp = exp_builder.Build();
+			expression = exp;
+			(*currentIndex) += j;
 		}
 
 		hasLexem = lexems[*currentIndex].GetType() != Type_Lexems::terminal;

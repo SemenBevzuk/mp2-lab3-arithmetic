@@ -2,7 +2,7 @@
 
 using namespace std;
 
-enum Type_Lexems { var, digit, unary_operetion, open_bracet, close_bracket, terminal, add,minus,multiply,divide};
+enum Type_Lexems { var, digit, unary_operetion, open_bracet, close_bracket, terminal, add, minus, multiply, divide};
 
 class Lexema
 {

@@ -14,6 +14,15 @@ public:
 		Parser parser;
 		pLexems = parser.Parse(input);
 	}
+	
+	ExpressionBuilder(Lexema* input, int size) {
+		//pLexems = input;
+		pLexems = new Lexema [size+1];
+		for (int i = 0; i < size; i++) {
+			pLexems[i] = input[i];
+		}
+		pLexems[size] = Lexema(Type_Lexems::terminal, "");
+	}
 
 	Digit* getDigit();
 	Expression* Build();
