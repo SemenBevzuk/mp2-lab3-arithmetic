@@ -9,9 +9,10 @@ TEST(Expression, can_calc_digit)
 
 TEST(Expression, can_calc_var)
 {
-	Var a;
-	a.SetValue(1);
-	EXPECT_EQ(1, a.Calculate());
+	Variable a("a");
+	VariableExpression b(&a);
+	b.SetVar(1);
+	EXPECT_EQ(1, b.Calculate());
 }
 
 TEST(Expression, can_set_digit) {

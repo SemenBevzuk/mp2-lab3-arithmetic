@@ -6,6 +6,19 @@ Expression* ExpressionBuilder::getDigit(Lexema lexema)
 	return new Digit(stod(lexema.GetValue()));
 }
 
+Expression* ExpressionBuilder::getVariable(Lexema lexema) {
+	for (int i = 0; i < variables.size(); i++)
+	{
+		if (lexema.GetValue() == variables[i].GetName()) //value - имя
+		{
+			return new VariableExpression(&variables[i]);
+		}
+	}
+	variables.push_back(Variable(lexema.GetValue()));
+
+	return new VariableExpression(&variables[variables.size()-1]);
+}
+
 Expression* ExpressionBuilder::Build()
 {
 	int* index = new int;
@@ -19,10 +32,17 @@ Expression* ExpressionBuilder::build(Lexema* lexems, int* currentIndex)
 
 	bool hasLexem = lexems[*currentIndex].GetType() != Type_Lexems::terminal;
 	int count_bracet = 0;
+	int variable_count = 0;
 
 	while (hasLexem)
 	{
 		Lexema lexema = lexems[*currentIndex];
+
+		if (lexema.GetType() == Type_Lexems::var)
+		{	
+			expression = getVariable(lexema);
+			(*currentIndex)++;
+		}
 		if (lexema.GetType() == Type_Lexems::digit) {
 			expression = getDigit(lexema);
 			(*currentIndex)++;

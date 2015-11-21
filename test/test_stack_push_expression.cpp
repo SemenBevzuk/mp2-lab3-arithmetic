@@ -41,3 +41,12 @@ TEST(Stack_lexem, can_push_expression_whith_bracket) {
 	ASSERT_EQ("2", stack.Put().GetValue());
 	ASSERT_EQ("1", stack.Put().GetValue());
 }
+
+TEST(Stack_lexem, can_read_variable) {
+	Stack < Lexema > stack(10);
+	ExpressionBuilder builder("a");
+	Expression* expression = builder.Build();
+	expression->PushTo(&stack);;
+
+	ASSERT_EQ("a", stack.Put().GetValue());
+}

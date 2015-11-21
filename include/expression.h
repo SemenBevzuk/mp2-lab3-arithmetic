@@ -4,6 +4,7 @@
 #include <string>
 #include "stack.h"
 #include <parser.h>
+#include "variable.h"
 
 class Expression {
 public:
@@ -27,42 +28,28 @@ private:
 	double Value;
 };
 
-class Var : public Expression {
+class VariableExpression : public Expression {
 public:
 	double Calculate() override { 
-	    //TODO: Нужна проверка IsSet, и ввод значения из консоли. Плюс подружить это с тестами.
-		/*if (IsSet == false)
-		{
-			double x;
-			std::cout << "Введите переменную "<< Name <<": ";
-			std::cin >> x;
-			std::cout << std::endl;
-			Value = x;
-			IsSet = true;
-		}*/
-		return Value; 
+		return Var->GetValue(); 
 	};
-	Var() {}
-	Var(double value, std::string name)
+	VariableExpression(Variable* var)
 	{
-		Value = value;
-		IsSet = true;
-		Name = name;
+		Var = var;
 	};
-
-	void SetValue(double x) { Value = x; };
-
 	Lexema ToLexem() override {
 		std::ostringstream strs;
-		strs << Value;
+		strs << Var->GetValue(); //значение
 		std::string str = strs.str();
 		return Lexema(Type_Lexems::var, str);
 	};
+	void SetVar(double a)
+	{
+		Var->SetVariable(a);
+	}
 
 private:
-	double Value;
-	bool IsSet = false;
-	std::string Name = "";
+	Variable* Var;
 };
 
 class UnaryMinus : public Expression{
