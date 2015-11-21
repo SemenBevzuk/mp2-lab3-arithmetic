@@ -95,8 +95,8 @@ void Stack<Type>::Push(Type element) {
 	if (this->IsFull()) {
 		throw ("Стэк переполнен!");
 	}
-	//Top++;
-	pMem[++Top] = element;
+	Top++;
+	pMem[Top] = element;
 }
 
 template <class Type>

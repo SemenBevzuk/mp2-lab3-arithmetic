@@ -76,6 +76,10 @@ public:
 	Lexema ToLexem() override {
 		return Lexema(Type_Lexems::unary_operetion_minus, "-");
 	};
+	void PushTo(Stack<Lexema> *stack) override {							
+		expression->PushTo(stack);
+		stack->Push(ToLexem());
+	};
 };
 
 class BinaryOperation : public Expression {
@@ -83,8 +87,8 @@ public:
 	void SetLeft(Expression* theLeft) { Left = theLeft; };
 	void SetRight(Expression* theRight) { Right = theRight; };
 	void PushTo(Stack<Lexema> *stack) override {
-		stack->Push(Left->ToLexem());
-		stack->Push(Right->ToLexem());
+		Left->PushTo(stack);
+		Right->PushTo(stack);
 		stack->Push(ToLexem());
 	};
 protected:
