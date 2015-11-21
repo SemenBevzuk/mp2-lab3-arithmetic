@@ -30,7 +30,7 @@ TEST(Parser, can_pars_add_operation) {
 	EXPECT_EQ(result, p.Parse(input)[1]);
 }
 TEST(Parser, can_pars_unary_operation) {
-	Lexema result(unary_operetion, "-");
+	Lexema result(unary_operetion_minus, "-");
 	std::string input = "-a";
 	Parser p;
 

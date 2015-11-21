@@ -1,7 +1,9 @@
-﻿#include <iostream>
+﻿
+#pragma once
+#include <iostream>
 using namespace std;
 
-#define MemSize 30						 //стандартный размер
+#define MemSize 100						 //стандартный размер
 
 template <class Type>
 class Stack
@@ -23,7 +25,7 @@ public:
 	bool IsEmpty();
 
 	Type Put();								//взять и удалить верхний элемент
-	void Push(int element);					//добавить элемент
+	void Push(Type element);					//добавить элемент
 	Type Peek() const;						//посмотреть верхний элемент без удаления
 
 	void SetSize(int n);
@@ -51,9 +53,9 @@ Stack<Type>::Stack(int n) {
 	pMem = new Type[n];
 	Size = n;
 	Top = -1;
-	for (int i = 0; i < Size; i++) {
+	/*for (int i = 0; i < Size; i++) {
 		pMem[i] = 0;
-	}
+	}*/
 }
 
 template <class Type>
@@ -89,7 +91,7 @@ bool Stack<Type>::IsFull() {
 }
 
 template <class Type>
-void Stack<Type>::Push(int element) {
+void Stack<Type>::Push(Type element) {
 	if (this->IsFull()) {
 		throw ("Стэк переполнен!");
 	}

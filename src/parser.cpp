@@ -82,7 +82,7 @@ void Parser::AddOperationUnary(string var, Lexema* res, int index)
 {
 	string variable;
 	variable += var;
-	res[index] = Lexema(Type_Lexems::unary_operetion, variable);
+	res[index] = Lexema(Type_Lexems::unary_operetion_minus, variable);
 }
 void Parser::AddOpenBracket(string var, Lexema* res, int index)
 {

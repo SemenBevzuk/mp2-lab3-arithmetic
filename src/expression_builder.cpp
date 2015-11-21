@@ -16,6 +16,7 @@ Expression* ExpressionBuilder::Build()
 Expression* ExpressionBuilder::build(Lexema* lexems, int* currentIndex)
 {
 	Expression* expression;
+
 	bool hasLexem = lexems[*currentIndex].GetType() != Type_Lexems::terminal;
 	int count_bracet = 0;
 
@@ -58,6 +59,17 @@ Expression* ExpressionBuilder::build(Lexema* lexems, int* currentIndex)
 			Expression* exp = exp_builder.Build();
 			expression = exp;
 			(*currentIndex) += j;
+		}
+
+		if (lexema.GetType() == Type_Lexems::unary_operetion_minus)
+		{
+			UnaryMinus* operation;
+			operation = new UnaryMinus;
+
+			(*currentIndex)++;
+			
+			operation->SetExpression(build(lexems, currentIndex));
+			expression = operation;
 		}
 
 		hasLexem = lexems[*currentIndex].GetType() != Type_Lexems::terminal;

@@ -37,3 +37,17 @@ TEST(Expression_Builder, can_build_expression_whith_bracket) {
 	Expression* expression = builder.Build();
 	ASSERT_EQ( (1+2)*3, expression->Calculate());
 }
+
+TEST(Expression_Builder, can_expression_whith_unary_minus) {
+	ExpressionBuilder builder("-3*2");
+	Expression* expression = builder.Build();
+	ASSERT_EQ(-3*2, expression->Calculate());
+}
+
+TEST(Expression_Builder, can_expression_whith_unary_minus_and_whith_bracket) {
+	ExpressionBuilder builder("4*(-3)");
+	Expression* expression = builder.Build();
+	ASSERT_EQ(4*(-3), expression->Calculate());
+}
+
+
