@@ -2,6 +2,7 @@
 #include "expression.h"
 #include <iostream>
 #include <vector>
+#include "IConsole.h"
 
 class ExpressionBuilder
 {
@@ -16,10 +17,20 @@ private:
 
 	std::vector<Variable> variables;
 
+	IConsole* console;
+
+	void GetVariables() {
+		for (int i = 0; i < variables.size(); i++) {
+			if (!variables[i].IsSet()) {
+				variables[i].SetVariable(console->GetValue(variables[i].GetName()));
+			}
+		}
+	}
 public:
-	ExpressionBuilder(string input) {
+	ExpressionBuilder(string input, IConsole* cons) {
 		Parser parser;
 		pLexems = parser.Parse(input);
+		console = cons;
 	}
 	
 	ExpressionBuilder(Lexema* input, int size) {

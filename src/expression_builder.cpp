@@ -23,7 +23,9 @@ Expression* ExpressionBuilder::Build()
 {
 	int* index = new int;
 	*index = 0;
-	return build(pLexems, index);
+	Expression* expression = build(pLexems, index);
+	GetVariables();
+	return expression;
 };
 
 Expression* ExpressionBuilder::build(Lexema* lexems, int* currentIndex)
