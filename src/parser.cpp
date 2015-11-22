@@ -5,9 +5,10 @@
 
 Lexema::Lexema() {};
 
-Lexema::Lexema(Type_Lexems type, string val) {
+Lexema::Lexema(Type_Lexems type, string val, int pos) {
 	Type = type;
 	Value = val;
+	Position = pos;
 }
 
 bool Lexema::operator==(const Lexema &v) const{
@@ -28,13 +29,13 @@ bool Lexema::operator==(const Lexema &v) const{
 
 //PARSER---
 
-void Parser::AddVariable(string v, Lexema* res, int index)
+void Parser::AddVariable(string v, Lexema* res, int index, int pos)
 {
 	string variable;
 	variable += v;
-	res[index] = Lexema(Type_Lexems::var, variable);
+	res[index] = Lexema(Type_Lexems::var, variable, pos);
 }
-void Parser::AddDigit(string str, Lexema* res, int index, int *for_index)
+void Parser::AddDigit(string str, Lexema* res, int index, int *for_index, int pos)
 {
 	string variable;
 	string point = ".";
@@ -48,53 +49,53 @@ void Parser::AddDigit(string str, Lexema* res, int index, int *for_index)
 			break;
 		}
 	}
-	res[index] = Lexema(Type_Lexems::digit, variable);
+	res[index] = Lexema(Type_Lexems::digit, variable, pos);
 }
-void Parser::AddAddOperation(string var, Lexema* res, int index)
+void Parser::AddAddOperation(string var, Lexema* res, int index, int pos)
 {
 	string variable;
 	variable += var;
-	res[index] = Lexema(Type_Lexems::add, variable);
-}
-
-void Parser::AddMinusOperation(string var, Lexema* res, int index)
-{
-	string variable;
-	variable += var;
-	res[index] = Lexema(Type_Lexems::minus, variable);
+	res[index] = Lexema(Type_Lexems::add, variable, pos);
 }
 
-void Parser::AddMultiplyOperation(string var, Lexema* res, int index)
+void Parser::AddMinusOperation(string var, Lexema* res, int index, int pos)
 {
 	string variable;
 	variable += var;
-	res[index] = Lexema(Type_Lexems::multiply, variable);
+	res[index] = Lexema(Type_Lexems::minus, variable, pos);
 }
 
-void Parser::AddDivideOperation(string var, Lexema* res, int index)
+void Parser::AddMultiplyOperation(string var, Lexema* res, int index, int pos)
 {
 	string variable;
 	variable += var;
-	res[index] = Lexema(Type_Lexems::divide, variable);
+	res[index] = Lexema(Type_Lexems::multiply, variable, pos);
 }
 
-void Parser::AddOperationUnary(string var, Lexema* res, int index)
+void Parser::AddDivideOperation(string var, Lexema* res, int index, int pos)
 {
 	string variable;
 	variable += var;
-	res[index] = Lexema(Type_Lexems::unary_operetion_minus, variable);
+	res[index] = Lexema(Type_Lexems::divide, variable, pos);
 }
-void Parser::AddOpenBracket(string var, Lexema* res, int index)
+
+void Parser::AddOperationUnary(string var, Lexema* res, int index, int pos)
 {
 	string variable;
 	variable += var;
-	res[index] = Lexema(Type_Lexems::open_bracet, variable);
+	res[index] = Lexema(Type_Lexems::unary_operetion_minus, variable, pos);
 }
-void Parser::AddCloseBracket(string var, Lexema* res, int index)
+void Parser::AddOpenBracket(string var, Lexema* res, int index, int pos)
 {
 	string variable;
 	variable += var;
-	res[index] = Lexema(Type_Lexems::close_bracket, variable);
+	res[index] = Lexema(Type_Lexems::open_bracet, variable, pos);
+}
+void Parser::AddCloseBracket(string var, Lexema* res, int index, int pos)
+{
+	string variable;
+	variable += var;
+	res[index] = Lexema(Type_Lexems::close_bracket, variable, pos);
 }
 bool Parser::IsVariable(string str, int index)
 {
@@ -156,58 +157,59 @@ Lexema* Parser::Parse(string input) {
 	Lexema* result = new Lexema[input.length()+1];
 	for (int i = 0; i < input.length()+1; i++)
 	{
-		result[i] = Lexema(Type_Lexems::terminal, "");
+		result[i] = Lexema(Type_Lexems::terminal, "", i);
 	}
 
 	int lexemaIndex = 0;
 
 	for (int i = 0; i < input.length(); i++) {
 		if (IsVariable(input,i)) {
-			AddVariable(input.substr(i,1), result, lexemaIndex);
+			AddVariable(input.substr(i,1), result, lexemaIndex, i);
+			
 			lexemaIndex++;
 			continue;
 		}
 		if (IsOperationUnary(input,i))
 		{
-			AddOperationUnary(input.substr(i, 1), result, lexemaIndex);
+			AddOperationUnary(input.substr(i, 1), result, lexemaIndex, i);
 			lexemaIndex++;
 			continue;
 		}
 		if (IsAddOperation(input,i)) {
-			AddAddOperation(input.substr(i, 1), result, lexemaIndex);
+			AddAddOperation(input.substr(i, 1), result, lexemaIndex, i);
 			lexemaIndex++;
 			continue;
 		}
 		if (IsMunisOperation(input,i)) {
-			AddMinusOperation(input.substr(i, 1), result, lexemaIndex);
+			AddMinusOperation(input.substr(i, 1), result, lexemaIndex, i);
 			lexemaIndex++;
 			continue;
 		}
 		if (IsMultiplyOperation(input,i)) {
-			AddMultiplyOperation(input.substr(i, 1), result, lexemaIndex);
+			AddMultiplyOperation(input.substr(i, 1), result, lexemaIndex, i);
 			lexemaIndex++;
 			continue;
 		}
 		if (IsDivideOperation(input,i)) {
-			AddDivideOperation(input.substr(i, 1), result, lexemaIndex);
+			AddDivideOperation(input.substr(i, 1), result, lexemaIndex, i);
 			lexemaIndex++;
 			continue;
 		}
 		if (IsOpenBracket(input,i))
 		{
-			AddOpenBracket(input.substr(i, 1), result, lexemaIndex);
+			AddOpenBracket(input.substr(i, 1), result, lexemaIndex, i);
 			lexemaIndex++;
 			continue;
 		}
 		if (IsCloseBracket(input,i)) {
-			AddCloseBracket(input.substr(i, 1), result, lexemaIndex);
+			AddCloseBracket(input.substr(i, 1), result, lexemaIndex, i);
 			lexemaIndex++;
 			continue;
 		}
 		if (IsDigit(input,i))
 		{
 			int j = 0;
-			AddDigit(input.substr(i), result, lexemaIndex, &j);
+			AddDigit(input.substr(i), result, lexemaIndex, &j, i);
 			i += j-1;
 			lexemaIndex++;
 			continue;

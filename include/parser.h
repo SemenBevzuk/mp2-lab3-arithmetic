@@ -11,12 +11,15 @@ class Lexema
 private:
 	Type_Lexems Type;
 	string Value;
+	int Position;
 public:
 	Lexema();
-	Lexema(Type_Lexems type, string val);
+	Lexema(Type_Lexems type, string val, int pos=-1);
 	bool operator==(const Lexema &v) const;
 	Type_Lexems GetType() const { return Type; }
 	string GetValue() const { return Value; }
+	void SetPosition(int pos) { Position = pos; }
+	int GetPosition() { return Position; }
 
 	friend ostream& operator<<(ostream &out, const Lexema &l) {
 		out << l.Type << endl;
@@ -28,15 +31,15 @@ public:
 class Parser
 {
 private:
-	void AddVariable(string var, Lexema* res, int index);
-	void AddDigit(string var, Lexema* res, int index, int *for_index);
-	void AddAddOperation(string var, Lexema* res, int index);
-	void AddMinusOperation(string var, Lexema* res, int index);
-	void AddMultiplyOperation(string var, Lexema* res, int index);
-	void AddDivideOperation(string var, Lexema* res, int index);
-	void AddOperationUnary(string var, Lexema* res, int index);
-	void AddOpenBracket(string var, Lexema* res, int index);
-	void AddCloseBracket(string var, Lexema* res, int index);
+	void AddVariable(string var, Lexema* res, int index, int pos);
+	void AddDigit(string var, Lexema* res, int index, int *for_index, int pos);
+	void AddAddOperation(string var, Lexema* res, int index, int pos);
+	void AddMinusOperation(string var, Lexema* res, int index, int pos);
+	void AddMultiplyOperation(string var, Lexema* res, int index, int pos);
+	void AddDivideOperation(string var, Lexema* res, int index, int pos);
+	void AddOperationUnary(string var, Lexema* res, int index, int pos);
+	void AddOpenBracket(string var, Lexema* res, int index, int pos);
+	void AddCloseBracket(string var, Lexema* res, int index, int pos);
 
 	bool IsVariable(string str, int index);
 	bool IsDigit(string str, int index);
