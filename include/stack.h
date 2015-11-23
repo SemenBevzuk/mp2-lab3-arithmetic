@@ -3,7 +3,7 @@
 #include <iostream>
 using namespace std;
 
-#define MemSize 100						 //стандартный размер
+#define MemSize 50						 //стандартный размер
 
 template <class Type>
 class Stack
@@ -40,9 +40,9 @@ Stack<Type>::Stack() {
 	pMem = new Type[MemSize];
 	Size = MemSize;
 	Top = -1;
-	for (int i = 0; i < Size; i++) {
+	/*for (int i = 0; i < Size; i++) {
 		pMem[i] = 0;
-	}
+	}*/
 }
 
 template <class Type>
