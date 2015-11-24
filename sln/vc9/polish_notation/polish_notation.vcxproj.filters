@@ -46,5 +46,8 @@
     <ClInclude Include="..\..\..\include\corrector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\include\reverse_polish_notation.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

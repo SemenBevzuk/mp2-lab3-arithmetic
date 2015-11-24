@@ -87,6 +87,7 @@
     <ClInclude Include="..\..\..\include\expression_builder.h" />
     <ClInclude Include="..\..\..\include\IConsole.h" />
     <ClInclude Include="..\..\..\include\parser.h" />
+    <ClInclude Include="..\..\..\include\reverse_polish_notation.h" />
     <ClInclude Include="..\..\..\include\stack.h" />
     <ClInclude Include="..\..\..\include\variable.h" />
   </ItemGroup>

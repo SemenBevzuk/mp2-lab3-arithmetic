@@ -63,9 +63,10 @@ public:
 	Lexema ToLexem() override {
 		return Lexema(Type_Lexems::unary_operetion_minus, "-");
 	};
-	void PushTo(Stack<Lexema> *stack) override {							
-		expression->PushTo(stack);
+	void PushTo(Stack<Lexema> *stack) override {
 		stack->Push(ToLexem());
+		expression->PushTo(stack);
+		
 	};
 };
 
@@ -74,9 +75,10 @@ public:
 	void SetLeft(Expression* theLeft) { Left = theLeft; };
 	void SetRight(Expression* theRight) { Right = theRight; };
 	void PushTo(Stack<Lexema> *stack) override {
+		stack->Push(ToLexem());
 		Left->PushTo(stack);
 		Right->PushTo(stack);
-		stack->Push(ToLexem());
+		
 	};
 protected:
 	Expression* Left;

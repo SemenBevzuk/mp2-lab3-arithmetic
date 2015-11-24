@@ -9,9 +9,9 @@ TEST(Stack_lexem, can_push_expression_whith_add) {
 	ExpressionBuilder builder("1+2", NULL);
 	Expression* expression = builder.Build();
 	expression->PushTo(&stack);
-	ASSERT_EQ("+", stack.Put().GetValue());
 	ASSERT_EQ("2", stack.Put().GetValue());
 	ASSERT_EQ("1", stack.Put().GetValue());
+	ASSERT_EQ("+", stack.Put().GetValue());
 }
 
 TEST(Stack_lexem, can_push_expression_whith_any_add) {
@@ -21,11 +21,11 @@ TEST(Stack_lexem, can_push_expression_whith_any_add) {
 	double x = expression->Calculate();
 	expression->PushTo(&stack);;
 
-	ASSERT_EQ("+", stack.Put().GetValue());
-	ASSERT_EQ("+", stack.Put().GetValue());
 	ASSERT_EQ("3", stack.Put().GetValue());
 	ASSERT_EQ("2", stack.Put().GetValue());
+	ASSERT_EQ("+", stack.Put().GetValue());
 	ASSERT_EQ("1", stack.Put().GetValue());
+	ASSERT_EQ("+", stack.Put().GetValue());
 }
 
 TEST(Stack_lexem, can_push_expression_whith_bracket) {
@@ -35,11 +35,11 @@ TEST(Stack_lexem, can_push_expression_whith_bracket) {
 	double x = expression->Calculate();
 	expression->PushTo(&stack);;
 
-	ASSERT_EQ("*", stack.Put().GetValue());
 	ASSERT_EQ("4", stack.Put().GetValue());
-	ASSERT_EQ("+", stack.Put().GetValue());
 	ASSERT_EQ("2", stack.Put().GetValue());
 	ASSERT_EQ("1", stack.Put().GetValue());
+	ASSERT_EQ("+", stack.Put().GetValue());
+	ASSERT_EQ("*", stack.Put().GetValue());
 }
 
 TEST(Stack_lexem, can_read_variable) {
