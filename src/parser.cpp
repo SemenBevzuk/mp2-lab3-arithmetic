@@ -3,7 +3,12 @@
 
 //LEXEMA---
 
-Lexema::Lexema() {};
+Lexema::Lexema()
+{
+	Type = Type_Lexems::terminal;
+	Value = "0";
+	Position = -1;
+};
 
 Lexema::Lexema(Type_Lexems type, string val, int pos) {
 	Type = type;

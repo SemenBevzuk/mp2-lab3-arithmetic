@@ -56,5 +56,11 @@ TEST(Expression_Builder, can_expression_whith_variable) {
 	ASSERT_EQ(2*(1 + 2), expression->Calculate());
 }
 
+TEST(Expression_Builder, can_expression_whith_dif_operation) {
+	ExpressionBuilder builder("2*2+2", NULL);
+	Expression* expression = builder.Build();
+	ASSERT_EQ(2+2*2, expression->Calculate());
+}
+
 
 

@@ -79,7 +79,7 @@
     <ClCompile Include="..\..\..\src\corrector.cpp" />
     <ClCompile Include="..\..\..\src\expression_builder.cpp" />
     <ClCompile Include="..\..\..\src\parser.cpp" />
-    <ClCompile Include="..\..\..\src\stack.cpp" />
+    <ClCompile Include="..\..\..\src\switch.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\corrector.h" />
@@ -89,6 +89,7 @@
     <ClInclude Include="..\..\..\include\parser.h" />
     <ClInclude Include="..\..\..\include\reverse_polish_notation.h" />
     <ClInclude Include="..\..\..\include\stack.h" />
+    <ClInclude Include="..\..\..\include\switch.h" />
     <ClInclude Include="..\..\..\include\variable.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
