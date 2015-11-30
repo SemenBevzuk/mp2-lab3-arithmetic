@@ -103,6 +103,24 @@ public:
 					throw "Переполнение стэка";
 				}
 			}
+			if (element.GetType() == Type_Lexems::unary_operetion_minus) {
+				if (!result->IsFull()) {
+
+					left = stod(result->Put().GetValue());
+
+					operation_result = -left;
+					string str;
+					std::ostringstream ost;
+					ost << operation_result;
+
+					str = ost.str();
+					element = Lexema(Type_Lexems::digit, str);
+					result->Push(element);
+				}
+				else {
+					throw "Переполнение стэка";
+				}
+			}
 		}
 		return stod(result->Put().GetValue());
 	}

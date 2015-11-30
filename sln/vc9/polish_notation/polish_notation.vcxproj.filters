@@ -23,6 +23,9 @@
     <ClCompile Include="..\..\..\src\switch.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\calculate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\stack.h">
@@ -50,6 +53,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\switch.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\calculate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -69,7 +69,7 @@ Stack<Lexema>* Switch::build_notation(Lexema* input) {
 		lex_inter = intermediate->Peek();
 
 
-		if (lex.GetType() == Type_Lexems::open_bracet || lex.GetType() == Type_Lexems::unary_operetion_minus) {
+		if (lex.GetType() == Type_Lexems::open_bracet) {
 			PushIntermediate(lex);
 			continue;
 		}

@@ -112,6 +112,7 @@
     <ClCompile Include="..\..\..\test\test_polish_notation.cpp" />
     <ClCompile Include="..\..\..\test\test_stack.cpp" />
     <ClCompile Include="..\..\..\test\test_stack_push_expression.cpp" />
+    <ClCompile Include="test_calculate.cpp" />
     <ClCompile Include="test_parser.cpp" />
     <ClCompile Include="test_switch.cpp" />
   </ItemGroup>
