@@ -2,11 +2,13 @@
 #include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
+#include <locale>
 
 using namespace std;
 
 int main()
 {
+	setlocale(LC_ALL, "Russian");
 	string input="";
 	Calculator* Calc = new Calculator;
 	double res=0;
@@ -16,21 +18,30 @@ int main()
 	int answer = 0;
 	cout << "Программа реализует алгоритм вычисления выражения по обратной польской записи." << endl;
 	while (ContinueCalculation) {
-		while (ContinueСurrentCalculation) {
-			while (ExpressionNotCorrectly) {
-				cout << "Введите выражение: ";
-				cin >> input;
-				cout << endl;
-				try
-				{
-					res = Calc->Calculate(input);
-					ExpressionNotCorrectly = false;
+		ExpressionNotCorrectly = true;
+		while (ExpressionNotCorrectly) {
+			cout << "Введите выражение: ";
+			cin >> input;
+			cout << endl;
+			try {
+				Parser p;
+				Lexema* lexems_input = p.Parse(input);
+				Corrector c;
+				Stack<Error>* errors;
+				errors = c.CheckExpression(lexems_input);
+				while (!errors->IsEmpty()) {
+					Error err = errors->Put();
+					cout << err.GetText() << err.GetPosition() << endl;
+					throw "Ошибка в выражении";
 				}
-				catch (...)
-				{
-					cout << "Введите выражение повторно!"<<endl;
-				}
+				ExpressionNotCorrectly = false;
 			}
+			catch (...) {
+				cout << "Введите выражение повторно!" << endl;
+			}
+		}
+		while (ContinueСurrentCalculation) {
+			res = Calc->Calculate(input);
 			cout << "Результат: " << res << endl;
 			cout << "Повторить с новыми переменными?(0 - нет| 1 - да): ";
 			cin >> answer;
