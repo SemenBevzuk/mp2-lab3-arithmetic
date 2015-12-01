@@ -97,6 +97,10 @@ Stack<Lexema>* Switch::build_notation(Lexema* input) {
 			DeleteBracets(lex);
 			continue;
 		}
+		if (lex_inter.GetType() == Type_Lexems::open_bracet || lex.GetType() == Type_Lexems::unary_operetion_minus) {
+			PushIntermediate(lex);
+			continue;
+		}
 		
 		PushToExpressionFromIntermediate();
 		PushIntermediate(lex);
@@ -107,19 +111,3 @@ Stack<Lexema>* Switch::build_notation(Lexema* input) {
 	}
 	return expression;
 }
-
-
-//| +—	* / ()
-//| 4	1	1	1	1	1	5
-//+ 2	2	2	1	1	1	2
-//—	2	2	2	1	1	1	2
-//* 2	2	2	2	2	1	2
-/// 2	2	2	2	2	1	2
-//(5	1	1	1	1	1	3
-//Числа соответствуют следующим ситуациям :
-//
-//1)Вагон на стрелке отправляется в Москву
-//2)Последний вагон, направившийся в Москву, разворачивается и направляется в Киев
-//3)Вагон, находящийся на стрелке, и последний вагон, отправившийся в Москву, угоняются и исчезают
-//4)Остановка.Символы, находящиеся на Киевской ветке, представляют собой формулу в обратной польской записи, если читать слева направо
-//5)Остановка.Произошла ошибка.Изначальная формула была некорректно сбалансирована

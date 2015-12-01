@@ -4,6 +4,7 @@
 #include "switch.h"
 #include "stack.h"
 #include "reverse_polish_notation.h"
+#include "aggregate.h"
 
 class Calculator
 {

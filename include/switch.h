@@ -15,6 +15,5 @@ private:
 	void DeleteBracets(Lexema lex);
 
 public:
-	//Switch() { intermediate = new Stack < Lexema > ; expression = new Stack < Lexema > ; }
 	Stack<Lexema>* build_notation(Lexema *input);
 };

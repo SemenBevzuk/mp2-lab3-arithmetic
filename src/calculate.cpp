@@ -17,6 +17,9 @@ double Calculator::Calculate(string input)
 		cout << str << err.GetPosition() << endl;
 	}
 
+	Aggregate aggregate;
+	aggregate.FillVar(lexems_input);
+
 	Switch s;
 	PolishNotationStack = s.build_notation(lexems_input);
 	GoodPolishNotationStack = new Stack<Lexema>(PolishNotationStack->GetSize());

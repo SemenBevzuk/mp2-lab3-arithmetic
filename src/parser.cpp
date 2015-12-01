@@ -14,6 +14,15 @@ Lexema::Lexema(Type_Lexems type, string val, int pos) {
 	Type = type;
 	Value = val;
 	Position = pos;
+	if (type == Type_Lexems::digit) {
+		Decimal = stod(val);
+	}
+}
+
+Lexema::Lexema(Type_Lexems type, double dec)
+{
+	Type = type;
+	Decimal = dec;
 }
 
 bool Lexema::operator==(const Lexema &v) const{

@@ -76,17 +76,16 @@
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\src\aggregate.cpp" />
     <ClCompile Include="..\..\..\src\calculate.cpp" />
     <ClCompile Include="..\..\..\src\corrector.cpp" />
-    <ClCompile Include="..\..\..\src\expression_builder.cpp" />
     <ClCompile Include="..\..\..\src\parser.cpp" />
     <ClCompile Include="..\..\..\src\switch.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\..\include\aggregate.h" />
     <ClInclude Include="..\..\..\include\calculate.h" />
     <ClInclude Include="..\..\..\include\corrector.h" />
-    <ClInclude Include="..\..\..\include\expression.h" />
-    <ClInclude Include="..\..\..\include\expression_builder.h" />
     <ClInclude Include="..\..\..\include\IConsole.h" />
     <ClInclude Include="..\..\..\include\parser.h" />
     <ClInclude Include="..\..\..\include\reverse_polish_notation.h" />

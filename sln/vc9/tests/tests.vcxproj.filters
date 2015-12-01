@@ -19,19 +19,7 @@
     <ClCompile Include="test_parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\test\test_expression.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\test\test_expression_builder.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\test\test_stack_push_expression.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\test\test_corrector.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\test\test_polish_notation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="test_switch.cpp">

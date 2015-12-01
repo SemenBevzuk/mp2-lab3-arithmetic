@@ -63,7 +63,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>gtest.lib;polish_notation.lib;arithmetic.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gtest.lib;polish_notation.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -83,7 +83,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>gtest.lib;polish_notation.lib;arithmetic.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>gtest.lib;polish_notation.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>../Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
@@ -93,10 +93,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ProjectReference Include="..\arithmetic\arithmetic.vcxproj">
-      <Project>{26f83c30-0e87-4474-8f0f-eab7cf3d97c4}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\gtest\gtest.vcxproj">
       <Project>{60932afc-7808-48b7-b3bf-f2bc151c0065}</Project>
       <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
@@ -106,12 +102,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\..\test\test_arithmetic.cpp" />
     <ClCompile Include="..\..\..\test\test_corrector.cpp" />
-    <ClCompile Include="..\..\..\test\test_expression.cpp" />
-    <ClCompile Include="..\..\..\test\test_expression_builder.cpp" />
     <ClCompile Include="..\..\..\test\test_main.cpp" />
-    <ClCompile Include="..\..\..\test\test_polish_notation.cpp" />
     <ClCompile Include="..\..\..\test\test_stack.cpp" />
-    <ClCompile Include="..\..\..\test\test_stack_push_expression.cpp" />
     <ClCompile Include="test_calculate.cpp" />
     <ClCompile Include="test_parser.cpp" />
     <ClCompile Include="test_switch.cpp" />
