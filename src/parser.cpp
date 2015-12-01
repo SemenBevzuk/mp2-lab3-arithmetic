@@ -111,6 +111,10 @@ void Parser::AddCloseBracket(string var, Lexema* res, int index, int pos)
 	variable += var;
 	res[index] = Lexema(Type_Lexems::close_bracket, variable, pos);
 }
+
+
+
+
 bool Parser::IsVariable(string str, int index)
 {
 	try {

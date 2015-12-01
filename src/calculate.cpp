@@ -13,8 +13,8 @@ double Calculator::Calculate(string input)
 	errors = c.CheckExpression(lexems_input);
 	while (!errors->IsEmpty()) {
 		Error err = errors->Put();
-		string str = err.GetText();
-		cout << str << err.GetPosition() << endl;
+		cout << err.GetText() << err.GetPosition() << endl;
+		throw "Ошибка в выражении";
 	}
 
 	Aggregate aggregate;
