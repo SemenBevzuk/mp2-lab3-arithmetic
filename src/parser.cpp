@@ -140,10 +140,15 @@ bool Parser::IsOperationUnary(string str, int index)
 }
 bool Parser::IsBinaryOperaion(string str, int index)
 {
-	return (index != 0) &&
-		(index < str.length() - 1) &&
-		(IsDigit(str, index - 1) || IsVariable(str, index - 1) || IsCloseBracket(str, index - 1)) &&
-		(IsDigit(str, index + 1) || IsVariable(str, index + 1) || IsOpenBracket(str, index + 1));
+	return  ((str[index] == '+') ||
+			 (str[index] == '-') ||
+		(str[index] == '/') ||
+		(str[index] == '*')) &&
+		(!IsOperationUnary(str, index));
+	//return (index != 0) &&
+		//(index < str.length() - 1);
+		//(IsDigit(str, index - 1) || IsVariable(str, index - 1) || IsCloseBracket(str, index - 1)) &&
+		//(IsDigit(str, index + 1) || IsVariable(str, index + 1) || IsOpenBracket(str, index + 1));
 }
 bool Parser::IsAddOperation(string str, int index)
 {

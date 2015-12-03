@@ -4,6 +4,14 @@ double Calculator::Calculate(string input)
 {
 	Parser p;
 	Lexema* lexems_input = p.Parse(input);
+	Lexema* lexema = lexems_input;
+	while (lexema->GetType() != Type_Lexems::terminal)
+	{
+		cout << lexema->GetValue() << ",";
+		lexema++;
+	}
+	cout << endl;
+
 	Corrector c;
 	Stack<Error>* errors;
 	Stack<Lexema>* PolishNotationStack;
