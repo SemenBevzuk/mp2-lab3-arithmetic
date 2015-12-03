@@ -28,3 +28,10 @@ TEST(Calculate, can_calculate_expression_whith_two_bracket_and_minus) {
 	double res = Calc.Calculate(input);
 	ASSERT_EQ((500 - 27 * 7) - (25 * 3 + 100), res);
 }
+
+TEST(Calculate, can_not_calculate_expression_whith_binary_operator_in_bracket) {
+	Calculator Calc;
+	string input = "(1+1)+(1-)";
+	double res = Calc.Calculate(input);
+	ASSERT_EQ((500 - 27 * 7) - (25 * 3 + 100), res);
+}
