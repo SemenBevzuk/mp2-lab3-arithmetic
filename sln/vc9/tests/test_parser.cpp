@@ -75,3 +75,9 @@ TEST(Parser, double_point) {
 	ASSERT_NO_THROW(p.Parse(input));
 	EXPECT_EQ("3..5", p.Parse(input)[2].GetValue());
 }
+
+TEST(Parser, double_digit) {
+	std::string input = "2.5";
+	Parser p;
+	EXPECT_EQ((2.5), p.Parse(input)[0].GetDecimalValue());
+}

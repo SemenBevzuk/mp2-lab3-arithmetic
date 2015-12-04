@@ -1,5 +1,6 @@
 ﻿#include "parser.h"
 #include <string>
+#include <sstream>
 
 //LEXEMA---
 
@@ -14,8 +15,10 @@ Lexema::Lexema(Type_Lexems type, string val, int pos) {
 	Type = type;
 	Value = val;
 	Position = pos;
-	if (type == Type_Lexems::digit) {
-		Decimal = stod(val);
+	if (type == Type_Lexems::digit) { //2.8->2.0 в sample
+		std::stringstream stream(val);
+		stream >> Decimal;
+		//Decimal = std::stod(val);
 	}
 }
 

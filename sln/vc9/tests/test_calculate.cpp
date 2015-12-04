@@ -29,9 +29,18 @@ TEST(Calculate, can_calculate_expression_whith_two_bracket_and_minus) {
 	ASSERT_EQ((500 - 27 * 7) - (25 * 3 + 100), res);
 }
 
-TEST(Calculate, can_not_calculate_expression_whith_binary_operator_in_bracket) {
+TEST(Calculate, can_calculate_expression_double) {
 	Calculator Calc;
-	string input = "(1+1)+(1-)";
+	string input = "2.2+3.8";
 	double res = Calc.Calculate(input);
-	ASSERT_EQ((500 - 27 * 7) - (25 * 3 + 100), res);
+	cout << res;
+	ASSERT_EQ(2.2 + 3.8, res);
+}
+
+TEST(Calculate, can_calculate_expression_double_2) {
+	Calculator Calc;
+	string input = "(2+2.3)*(3.4-2.9)";
+	double res = Calc.Calculate(input);
+	cout << res;
+	ASSERT_EQ((2 + 2.3)*(3.4 - 2.9), res);
 }
