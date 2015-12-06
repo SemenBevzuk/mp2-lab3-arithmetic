@@ -27,7 +27,6 @@ private:
 
 	bool IsDigitRight(Lexema lex);
 
-
 	bool IsDigit(Lexema lex);
 	bool IsBinaryOperaion(Lexema lex);
 	bool IsOperationUnary(Lexema lex);

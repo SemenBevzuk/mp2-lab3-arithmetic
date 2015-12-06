@@ -60,7 +60,11 @@
       <PrecompiledHeader />
       <WarningLevel>Level3</WarningLevel>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <BrowseInformation>true</BrowseInformation>
     </ClCompile>
+    <Bscmake>
+      <PreserveSbr>true</PreserveSbr>
+    </Bscmake>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -79,6 +83,7 @@
     <ClCompile Include="..\..\..\src\aggregate.cpp" />
     <ClCompile Include="..\..\..\src\calculate.cpp" />
     <ClCompile Include="..\..\..\src\corrector.cpp" />
+    <ClCompile Include="..\..\..\src\lexema.cpp" />
     <ClCompile Include="..\..\..\src\parser.cpp" />
     <ClCompile Include="..\..\..\src\reverse_polish_notation.cpp" />
     <ClCompile Include="..\..\..\src\switch.cpp" />
@@ -88,6 +93,7 @@
     <ClInclude Include="..\..\..\include\calculate.h" />
     <ClInclude Include="..\..\..\include\corrector.h" />
     <ClInclude Include="..\..\..\include\IConsole.h" />
+    <ClInclude Include="..\..\..\include\lexema.h" />
     <ClInclude Include="..\..\..\include\parser.h" />
     <ClInclude Include="..\..\..\include\reverse_polish_notation.h" />
     <ClInclude Include="..\..\..\include\stack.h" />
