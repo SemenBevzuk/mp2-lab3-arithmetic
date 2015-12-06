@@ -10,6 +10,4 @@ class Calculator
 {
 public:
 	double Calculate(string input);
-private:
-
 };

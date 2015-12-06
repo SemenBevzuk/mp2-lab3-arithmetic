@@ -10,7 +10,7 @@ private:
 public:
 	Error() {Position = NULL, Text = ""; }
 	Error(int pos, string s) { Position = pos; Text = s;}
-	Error(string s) { Position = -1; Text = s; } //ошибка где-то
+	Error(string s) { Position = -1; Text = s; } //ошибка где-то в выражениия на ()
 	int GetPosition() const { return Position; }
 	string GetText() const { return Text; }
 };

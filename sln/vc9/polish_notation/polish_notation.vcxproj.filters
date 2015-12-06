@@ -26,6 +26,9 @@
     <ClCompile Include="..\..\..\src\aggregate.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\src\reverse_polish_notation.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\include\stack.h">
@@ -43,9 +46,6 @@
     <ClInclude Include="..\..\..\include\corrector.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\include\reverse_polish_notation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\..\include\switch.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -53,6 +53,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\include\aggregate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\include\reverse_polish_notation.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

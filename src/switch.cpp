@@ -109,5 +109,10 @@ Stack<Lexema>* Switch::build_notation(Lexema* input) {
 	while (!intermediate->IsEmpty()) {
 		PushToExpressionFromIntermediate();
 	}
-	return expression;
+	Stack<Lexema>* GoodPolishNotationStack;
+	GoodPolishNotationStack = new Stack<Lexema>(expression->GetSize());
+	while (!expression->IsEmpty()) {
+		GoodPolishNotationStack->Push(expression->Put());
+	}
+	return GoodPolishNotationStack;
 }

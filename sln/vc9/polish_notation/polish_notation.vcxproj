@@ -80,6 +80,7 @@
     <ClCompile Include="..\..\..\src\calculate.cpp" />
     <ClCompile Include="..\..\..\src\corrector.cpp" />
     <ClCompile Include="..\..\..\src\parser.cpp" />
+    <ClCompile Include="..\..\..\src\reverse_polish_notation.cpp" />
     <ClCompile Include="..\..\..\src\switch.cpp" />
   </ItemGroup>
   <ItemGroup>
